@@ -1,36 +1,26 @@
-Algoritmo CumpleanosCercanos
-    Definir n, i, j, dia1, mes1, dia2, mes2, diff Como Entero
-    Definir nombres Como Cadena
-    Definir fechas Como Cadena
-    Dimension nombres[100], fechas[100], dias[100], meses[100]
+Algoritmo CumpleañosSimple
+    // Entrada de datos persona 1
+    Escribir "Nombre 1:"
+    Leer nom1
+    Escribir "Día (1-31):"
+    Leer d1
     
-    Escribir "Ingrese cantidad de personas:"
-    Leer n
+    // Entrada de datos persona 2
+    Escribir "Nombre 2:"
+    Leer nom2
+    Escribir "Día (1-31):"
+    Leer d2
     
-    // 1. Entrada de datos
-    Para i <- 1 Hasta n Hacer
-        Escribir "Nombre de persona ", i, ":"
-        Leer nombres[i]
-        Escribir "Fecha nacimiento (DD MM) de ", nombres[i], ":"
-        Leer dias[i], meses[i]
-    FinPara
-    
-    // 2. Comparar y determinar fechas
-    Escribir "--- Coincidencias ---"
-    Para i <- 1 Hasta n-1 Hacer
-        Para j <- i+1 Hasta n Hacer
-            // Convertir fechas a días totales para comparar (aproximado)
-            // Una forma simple es comparar mes y luego día
-            Si dias[i] = dias[j] Y meses[i] = meses[j] Entonces
-                Escribir nombres[i], " y ", nombres[j], " cumplen el mismo día: ", dias[i], "/", meses[i]
-            Sino
-                // Calcular diferencia cercana (ej. 7 días)
-                // Se requiere lógica de días totales si cambian de mes
-                diff <- Abs((dias[i] + meses[i]*30) - (dias[j] + meses[j]*30))
-                Si diff <= 7 O diff >= 355 Entonces // 355-365 es fin/inicio de año
-                    Escribir nombres[i], " y ", nombres[j], " cumplen en fechas cercanas."
-                FinSi
-            FinSi
-        FinPara
-    FinPara
+    // Proceso de comparación
+    Si d1 = d2 Entonces
+        Escribir nom1, " y ", nom2, " cumplen el mismo día."
+    Sino
+        Si d1 > d2 Entonces diff <- d1 - d2 Sino diff <- d2 - d1 FinSi
+        
+        Si diff <= 3 Entonces
+            Escribir "Tienen fechas cercanas. Diferencia: ", diff, " días."
+        Sino
+            Escribir "No cumplen días cercanos."
+        FinSi
+    FinSi
 FinAlgoritmo
