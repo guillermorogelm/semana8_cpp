@@ -1,26 +1,27 @@
-Algoritmo CumpleañosSimple
-    // Entrada de datos persona 1
-    Escribir "Nombre 1:"
-    Leer nom1
-    Escribir "Día (1-31):"
-    Leer d1
+Algoritmo Cumpleaños_N_Personas
+    Escribir "Ingrese cantidad de personas:"
+    Leer n
+    Dimension nombres[n], dias[n] // Arreglos para guardar datos
     
-    // Entrada de datos persona 2
-    Escribir "Nombre 2:"
-    Leer nom2
-    Escribir "Día (1-31):"
-    Leer d2
+    // Ciclo para capturar datos
+    Para i <- 1 Hasta n Hacer
+        Escribir "Nombre ", i, ":"
+        Leer nombres[i]
+        Escribir "Día de cumple (1-31):"
+        Leer dias[i]
+    FinPara
     
-    // Proceso de comparación
-    Si d1 = d2 Entonces
-        Escribir nom1, " y ", nom2, " cumplen el mismo día."
-    Sino
-        Si d1 > d2 Entonces diff <- d1 - d2 Sino diff <- d2 - d1 FinSi
-        
-        Si diff <= 3 Entonces
-            Escribir "Tienen fechas cercanas. Diferencia: ", diff, " días."
-        Sino
-            Escribir "No cumplen días cercanos."
-        FinSi
-    FinSi
+    // Ciclos anidados para comparar
+    Para i <- 1 Hasta n-1 Hacer
+        Para j <- i + 1 Hasta n Hacer
+            Si dias[i] = dias[j] Entonces
+                Escribir nombres[i], " y ", nombres[j], " coinciden."
+            Sino
+                diff <- abs(dias[i] - dias[j])
+                Si diff <= 3 Entonces
+                    Escribir nombres[i], " y ", nombres[j], " son cercanos."
+                FinSi
+            FinSi
+        FinPara
+    FinPara
 FinAlgoritmo
